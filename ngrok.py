@@ -50,11 +50,11 @@ def get_direct_download_url(file_id):
 clean_expired_files()
 
 # Get URL parameters
-params = st.query_params
+params = st.experimental_get_query_params()
 
 if "file_id" in params and "download" in params:
     # Directly serve the file for download
-    file_id = params.get("file_id", [None])[0]
+    file_id = params["file_id"][0]
     file_path = os.path.join(UPLOAD_DIR, file_id)
 
     if os.path.exists(file_path):
