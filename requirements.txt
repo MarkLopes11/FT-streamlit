@@ -1,5 +1,4 @@
 streamlit
 qrcode
 pillow
-uuid
-time
+uuid    
