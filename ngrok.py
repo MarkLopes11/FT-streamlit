@@ -50,7 +50,7 @@ def get_direct_download_url(file_id):
 clean_expired_files()
 
 # Get URL parameters
-params = st.experimental_get_query_params()
+params = st.query_params
 
 if "file_id" in params and "download" in params:
     # Directly serve the file for download
