@@ -1,0 +1,114 @@
+<!-- templates/result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your QR Code - File to QR Code Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .qr-container {
+            margin: 20px 0;
+        }
+        .qr-code {
+            max-width: 300px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+        }
+        .file-info {
+            margin: 20px 0;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border-left: 6px solid #ffc107;
+            padding: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .server-info {
+            background-color: #d1e7dd;
+            border-left: 6px solid #198754;
+            padding: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .back-button {
+            background-color: #f44336;
+        }
+        .link-box {
+            word-break: break-all;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your QR Code is Ready!</h1>
+        
+        <div class="file-info">
+            <h3>File: {{ filename }}</h3>
+        </div>
+        
+        <div class="qr-container">
+            <img src="{{ qr_code }}" alt="QR Code for your file" class="qr-code">
+        </div>
+        
+        <div class="server-info">
+            {% if is_ngrok %}
+                <p><strong>Public URL:</strong> Your file is available through a public ngrok tunnel</p>
+                <div class="link-box">{{ base_url }}</div>
+                <p>This URL can be accessed from any device with internet access!</p>
+            {% else %}
+                <p><strong>Server Info:</strong> Running on {{ server_ip }}:5000</p>
+                <p>Make sure your phone is connected to the same WiFi network as this computer.</p>
+            {% endif %}
+        </div>
+        
+        <div class="warning">
+            <p><strong>Important:</strong> This file and QR code will be available for {{ expiry_time }} minutes only.</p>
+            <p>Scan the QR code with your phone to download the file directly.</p>
+        </div>
+        
+        <div>
+            <a href="{{ download_url }}" class="button" target="_blank">Direct Download Link</a>
+            <a href="/" class="button back-button">Upload Another File</a>
+        </div>
+    </div>
+</body>
+</html>

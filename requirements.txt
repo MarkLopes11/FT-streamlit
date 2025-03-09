@@ -1,0 +1,5 @@
+streamlit
+qrcode
+pillow
+uuid
+time
