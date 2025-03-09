@@ -46,7 +46,7 @@ def get_download_url(file_id):
     """Get the shareable URL for the file download page"""
     # This assumes your Streamlit app is deployed to Streamlit Cloud
     # You'll need to replace this with your actual deployed URL
-    app_url = st.secrets.get("app_url", "https://your-app-url.streamlit.app")
+    app_url = st.secrets["app_url"]
     return f"{app_url}?file_id={file_id}"
 
 # Page Header
